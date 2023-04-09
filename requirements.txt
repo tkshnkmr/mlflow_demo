@@ -1,0 +1,10 @@
+numpy
+pandas
+scikit-learn
+black
+pylint
+flake8
+mypy
+mlflow
+xgboost
+hyperopt
