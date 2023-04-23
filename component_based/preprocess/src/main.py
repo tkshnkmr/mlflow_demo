@@ -1,3 +1,4 @@
+#!/usr/bin/env/python3
 """
 yaml file based to implement pipeline components
 """
@@ -5,7 +6,6 @@ yaml file based to implement pipeline components
 import argparse
 from kfp.v2.dsl import Dataset
 
-import os
 import pandas as pd
 import io
 import google.cloud.storage as storage

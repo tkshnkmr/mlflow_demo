@@ -1,19 +1,18 @@
 name: preprocess_my_data
 description: Preprocess the data
 inputs:
-  - {name: project_id, type: str, description: 'your project name'}
-  - {name: original_bucket_id, type: str, description: 'bucket name for csv file'}
-  - {name: target_filename, type: str, description: 'filename to load'}
+  - {name: project_id, type: String, description: 'your project name'}
+  - {name: original_bucket_id, type: String, description: 'bucket name for csv file'}
+  - {name: target_filename, type: String, description: 'filename to load'}
 outputs:
   - {name: output_dataset, type: Dataset, description: 'Dataset for training'}
 implementation:
   container:
-    image: UPDATE_IMAGE_LOC
-    command: [python, main.py]
+    image: gcr.io/$PROJECT_ID/sample_preprocessing
+    command: [python3, src/main.py]
     args: [
       --project-id, {inputValue: project_id},
       --original-bucket-id, {inputValue: original_bucket_id},
       --target-filename, {inputValue: target_filename},
-
       --output-dataset, {outputPath: output_dataset},
     ]

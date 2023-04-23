@@ -1,9 +1,7 @@
 FROM python:3.10-slim
 
 COPY requirements.txt /
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
-WORKDIR /app
-
-COPY ./ ./
-ENTRYPOINT python main.py
+COPY ./src ./src
+ENTRYPOINT python3 src/main.py
