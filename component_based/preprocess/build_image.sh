@@ -10,4 +10,5 @@ docker build --platform=linux/amd64 -t "$full_image_name" .
 echo $full_image_name
 docker push "$full_image_name"
 
-sed -e 's/OWN_GCP_PROJECT_ID/'$1'/g' component_raw.yaml > component.yaml
+# Update the yaml file
+sed -e 's/OWN_GCP_PROJECT_ID/'$PROJECT_ID'/g' component_raw.yaml > component.yaml
