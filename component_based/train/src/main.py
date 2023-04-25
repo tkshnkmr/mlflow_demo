@@ -119,7 +119,6 @@ if not args.model.uri.startswith("gs://"):
     save_full_path = args.model.name.replace("/gcs/", "gs://")
 else:
     save_full_path = args.model.uri
-print("save_full_path", save_full_path)
 
 # /PROJECT_NUM/PIPELINE_NAME/COMPONENT/artefact part for blob
 blob_name = "/".join(save_full_path.split("/")[3:])
