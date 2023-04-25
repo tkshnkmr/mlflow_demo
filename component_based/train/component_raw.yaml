@@ -1,0 +1,25 @@
+name: train_my_model
+description: Train the model
+inputs:
+  - {name: input_dataset, type: Dataset, description: ''}
+  - {name: datasplit_seed, type: Integer, description: ''}
+  - {name: selected_features, type: JsonArray, description: ''}
+  - {name: selected_label, type: String, description: ''}
+  - {name: my_hyper_params_dict, type: JsonObject, description: ''}
+outputs:
+  - {name: eval_metrics, type: Metrics, description: ''}
+  - {name: model, type: Model, description: ''}
+implementation:
+  container:
+    image: gcr.io/OWN_GCP_PROJECT_ID/sample_train
+    command: [python3, src/main.py]
+    args: [
+      --input-dataset, {inputPath: input_dataset},
+      --datasplit-seed, {inputValue: datasplit_seed},
+      --selected-features, {inputValue: selected_features},
+      --selected-label, {inputValue: selected_label},
+      --my-hyper-params-dict, {inputValue: my_hyper_params_dict},
+      --eval-metrics, {outputPath: eval_metrics},
+      --model, {outputPath: model},
+    ]
+
