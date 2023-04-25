@@ -5,12 +5,14 @@ Two kubeflow pipeline examples:
 
 1. Notebook based, standalone python solution.
 
-    Main file: ``` kubeflow_gcp_from_notebook.ipynb ```
+    - Main notebook: ``` kubeflow_gcp_from_notebook.ipynb ```
+    - Procedure: Run the notebook from the top
 
-2. Container based, solution.
+2. Container based, solution:
 
-    Main file: ``` kubeflow_gcp_from_components.ipynb ```
-    Components: ``` component_based/ ```
+    - Main notebook: ``` kubeflow_gcp_from_components.ipynb ```
+    - Components: ``` component_based/ ```
+    - Procedure: Build and push docker image to GCP ``` build_image.sh``` for each component, and run the main notebook from the top
 
 ## Pre-requisite
 1. Setup Python environtment (Python3.10.10)
@@ -30,6 +32,10 @@ Two kubeflow pipeline examples:
     ```
 
 4. Setup service account on your GCP console
+
+5. Download file from Kaggle
+- https://www.kaggle.com/c/house-prices-advanced-regression-techniques
+
 
 ## Pipeline overview
 ![image info](./pipeline_overview.png)
