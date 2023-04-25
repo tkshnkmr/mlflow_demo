@@ -1,0 +1,5 @@
+pandas==1.5.3
+kfp==1.8.14
+scikit-learn==1.2.2
+numpy==1.23.5
+google-cloud-storage==1.43.0

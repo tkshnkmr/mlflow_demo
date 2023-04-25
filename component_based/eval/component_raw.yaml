@@ -1,0 +1,22 @@
+name: eval_my_model
+description: Eval the model
+inputs:
+  - {name: input_dataset, type: Dataset, description: ''}
+  - {name: selected_features, type: JsonArray, description: ''}
+  - {name: model, type: Model, description: ''}
+outputs:
+  # - {name: pred_output_csv, type: JsonArray, description: ''}
+  # - {name: model_deployment_flag, type: JsonObject, description: ''}
+  - {name: pred_output_csv, type: Dataset, description: ''}
+  - {name: model_deployment_flag, type: Artifact, description: ''}
+implementation:
+  container:
+    image: gcr.io/OWN_GCP_PROJECT_ID/sample_eval
+    command: [python3, src/main.py]
+    args: [
+      --input-dataset, {inputPath: input_dataset},
+      --selected-features, {inputValue: selected_features},
+      --model, {inputPath: model},
+      --pred-output-csv, {outputPath: pred_output_csv},
+      --model-deployment-flag, {outputPath: model_deployment_flag},
+    ]
