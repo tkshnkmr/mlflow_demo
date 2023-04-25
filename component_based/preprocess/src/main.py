@@ -4,20 +4,31 @@ yaml file based to implement pipeline components
 """
 
 import argparse
+import io
+
+import google.cloud.storage as storage
+import pandas as pd
 from kfp.v2.dsl import Dataset
 
-import pandas as pd
-import io
-import google.cloud.storage as storage
 
-parser = argparse.ArgumentParser(description="")
+def obtain_args():
+    """
+    Get the args
+    """
 
-parser.add_argument("--project-id", type=str, help="")
-parser.add_argument("--original-bucket-id", type=str, help="")
-parser.add_argument("--target-filename", type=str, help="")
-#
-parser.add_argument("--output-dataset", type=Dataset, help="")
-args = parser.parse_args()
+    parser = argparse.ArgumentParser(description="")
+
+    parser.add_argument("--project-id", type=str, help="")
+    parser.add_argument("--original-bucket-id", type=str, help="")
+    parser.add_argument("--target-filename", type=str, help="")
+    #
+    parser.add_argument("--output-dataset", type=Dataset, help="")
+    args = parser.parse_args()
+    return args
+
+
+# Obtain args
+args = obtain_args()
 
 # ===============================
 #  Collect data from storage
@@ -47,7 +58,11 @@ df["BsmtUnfSF_TotalBsmtSF_ratio"] = (
     df["BsmtUnfSF_fillmean"] / df["TotalBsmtSF_fillmean"]
 )
 
-# Create an output
-df.to_csv(args.output_dataset.path, index=False, header=True)
-
-print(df.shape)
+# args.output_dataset has .path, .name, .metadata, and .uri
+# Save model and weights
+if not args.output_dataset.uri.startswith("gs://"):
+    save_full_path = args.output_dataset.name.replace("/gcs/", "gs://")
+else:
+    save_full_path = args.output_dataset.uri
+print("save_full_path", save_full_path)
+df.to_csv(save_full_path, index=False, header=True)
