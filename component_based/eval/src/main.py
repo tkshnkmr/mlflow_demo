@@ -25,6 +25,7 @@ def obtain_args():
     #
     parser.add_argument("--pred-output-csv", type=Dataset, help="")
     parser.add_argument("--model-deployment-flag", type=Artifact, help="")
+    parser.add_argument("--test-json-array-obj", type=Artifact, help="")
     #
     args = parser.parse_args()
 
@@ -124,3 +125,7 @@ metrics_dict = {"model_eval_passed": True, "threshould_or_score": score}
 with open(file_name, "w") as f:
     json.dump(metrics_dict, f)
 blob.upload_from_filename(file_name)
+
+# Save output as json object (can be seen in the console)
+with open(args.test_json_array_obj.name, "w") as f:
+    json.dump(metrics_dict, f)
