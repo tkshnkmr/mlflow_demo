@@ -20,7 +20,7 @@ Two kubeflow pipeline examples:
     python3 -m venv ~/YOUR_PY_ENV
     source ~/YOUR_PY_ENV/bin/activate
     ```
-2. Install required packages (inc. ``` kfp ```)
+2. Install required packages (inc. ``` kfp, google-cloud components ```)
 
 3. Setup environment variables inc. 
     
@@ -35,6 +35,8 @@ Two kubeflow pipeline examples:
 
 5. Download file from Kaggle
 - https://www.kaggle.com/c/house-prices-advanced-regression-techniques
+
+6. Install Google cloud SDK on your machine
 
 
 ## Pipeline overview
