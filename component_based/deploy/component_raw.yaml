@@ -1,0 +1,27 @@
+name: deploy_my_model
+description: Deploy the model
+inputs:
+  - {name: project_id, type: String, description: ''}
+  - {name: model, type: Model, description: ''}
+  - {name: serving_container_image_uri, type: String, description: ''}
+  - {name: endpoint_machine_type, type: String, description: ''}
+  - {name: endpoint_model_name, type: String, description: ''}
+  - {name: model_deployment_flag, type: Artifact, description: ''}  
+outputs:
+  - {name: vertex_endpoint, type: Artifact, description: ''}
+  - {name: vertex_model, type: Model, description: ''}
+implementation:
+  container:
+    image: gcr.io/OWN_GCP_PROJECT_ID/sample_deploy
+    command: [python3, src/main.py]
+    args: [
+      --project-id, {inputValue: project_id},
+      --model, {inputPath: model},
+      --serving-container-image-uri, {inputValue: serving_container_image_uri},
+      --endpoint-machine-type, {inputValue: endpoint_machine_type},
+      --endpoint-model-name, {inputValue: endpoint_model_name},
+      --model-deployment-flag, {inputPath: model_deployment_flag},
+      
+      --vertex-endpoint, {outputPath: vertex_endpoint},
+      --vertex-model, {outputPath: vertex_model},
+    ]
