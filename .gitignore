@@ -133,3 +133,7 @@ dmypy.json
 
 # Mac
 .DS_Store
+
+# Added for Kubeflow example
+component.yaml
+*.json
