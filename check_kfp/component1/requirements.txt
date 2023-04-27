@@ -1,0 +1,4 @@
+google-cloud-storage==1.43.0
+kfp==1.8.14
+fsspec==2022.11.0
+gcsfs==2022.11.0

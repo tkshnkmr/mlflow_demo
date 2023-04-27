@@ -1,0 +1,27 @@
+name: component2
+description: component2
+inputs:
+  - {name: in_artifact_path, type: Artifact, description: ''}
+  - {name: in_dataset_path, type: Dataset, description: ''}
+  - {name: in_metrics_path, type: Metrics, description: ''}
+  - {name: in_model_path, type: Model, description: ''}
+  # - {name: out_metrics, type: JsonObject, description: ''}
+  # - {name: out_artifact, type: JsonArray, description: ''}
+outputs:
+  - {name: output_metadata, type: JsonArray, description: ''}
+  - {name: output_model, type: Model, description: ''}
+implementation:
+  container:
+    image: gcr.io/OWN_GCP_PROJECT_ID/component2
+    command: [python3, src/main.py]
+    args: [
+      --in-artifact-path, {inputPath: in_artifact_path},
+      --in-dataset-path, {inputPath: in_dataset_path},
+      --in-metrics-path, {inputPath: in_metrics_path},
+      --in-model-path, {inputPath: in_model_path},
+      # --out-metrics, {inputPath: out_metrics},
+      # --out-artifact, {inputPath: out_artifact},
+      # 
+      --output-metadata, {outputPath: output_metadata},
+      --output-model, {outputPath: output_model},
+    ]

@@ -1,0 +1,34 @@
+name: component1
+description: component1
+inputs:
+  - {name: in_str, type: String, description: ''}
+  - {name: in_int, type: Integer, description: ''}
+  - {name: in_float, type: Float, description: ''}
+outputs:
+  # Both JsonArray and JsonObject looks the same on GCP
+  - {name: out_artifact, type: JsonArray, description: ''}
+  - {name: out_dataset, type: JsonArray, description: ''}
+  - {name: out_metrics, type: JsonObject, description: ''}
+  - {name: out_model, type: JsonObject, description: ''}
+  - {name: out_artifact_path, type: Artifact, description: ''}
+  - {name: out_dataset_path, type: Dataset, description: ''}
+  - {name: out_metrics_path, type: Metrics, description: ''}
+  - {name: out_model_path, type: Model, description: ''}
+implementation:
+  container:
+    image: gcr.io/OWN_GCP_PROJECT_ID/component1
+    command: [python3, src/main.py]
+    args: [
+      # For output, use outputPath
+      --in-str, {inputValue: in_str},
+      --in-int, {inputValue: in_int},
+      --in-float, {inputValue: in_float},
+      --out-artifact, {outputPath: out_artifact},
+      --out-dataset,  {outputPath: out_dataset},
+      --out-metrics, {outputPath: out_metrics},
+      --out-model, {outputPath: out_model},
+      --out-artifact-path, {outputPath: out_artifact_path},
+      --out-dataset-path, {outputPath: out_dataset_path},
+      --out-metrics-path, {outputPath: out_metrics_path},
+      --out-model-path, {outputPath: out_model_path},
+    ]
