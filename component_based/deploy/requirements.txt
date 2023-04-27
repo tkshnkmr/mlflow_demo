@@ -1,3 +1,4 @@
 kfp==1.8.14
-google-cloud-storage==1.43.0
 google-cloud-aiplatform==1.18.1
+fsspec==2022.11.0  # required for reading data directly from bucket
+gcsfs==2022.11.0  # required for reading data directly from bucket

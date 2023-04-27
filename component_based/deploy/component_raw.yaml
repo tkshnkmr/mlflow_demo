@@ -6,9 +6,7 @@ inputs:
   - {name: serving_container_image_uri, type: String, description: ''}
   - {name: endpoint_machine_type, type: String, description: ''}
   - {name: endpoint_model_name, type: String, description: ''}
-  - {name: model_deployment_flag, type: Artifact, description: ''}  
 outputs:
-  - {name: deployment_info, type: JsonObject, description: ''}
   - {name: vertex_endpoint_uri, type: String, description: ''}
   - {name: vertex_model_uri, type: String, description: ''}
 implementation:
@@ -21,9 +19,7 @@ implementation:
       --serving-container-image-uri, {inputValue: serving_container_image_uri},
       --endpoint-machine-type, {inputValue: endpoint_machine_type},
       --endpoint-model-name, {inputValue: endpoint_model_name},
-      --model-deployment-flag, {inputPath: model_deployment_flag},
       
-      --deployment-info, {outputPath: deployment_info},
       --vertex-endpoint-uri, {outputPath: vertex_endpoint_uri},
       --vertex-model-uri, {outputPath: vertex_model_uri},
     ]

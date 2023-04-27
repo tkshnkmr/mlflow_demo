@@ -9,6 +9,7 @@ inputs:
 outputs:
   - {name: eval_metrics, type: Metrics, description: ''}
   - {name: model, type: Model, description: ''}
+  - {name: best_hyperparam, type: JsonObject, description: ''}
 implementation:
   container:
     image: gcr.io/OWN_GCP_PROJECT_ID/sample_train
@@ -21,5 +22,6 @@ implementation:
       --my-hyper-params-dict, {inputValue: my_hyper_params_dict},
       --eval-metrics, {outputPath: eval_metrics},
       --model, {outputPath: model},
+      --best-hyperparam, {outputPath: best_hyperparam},
     ]
 

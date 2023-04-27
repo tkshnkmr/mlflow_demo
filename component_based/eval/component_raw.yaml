@@ -5,10 +5,8 @@ inputs:
   - {name: selected_features, type: JsonArray, description: ''}
   - {name: model, type: Model, description: ''}
 outputs:
-  # - {name: pred_output_csv, type: JsonArray, description: ''}
   - {name: pred_output_csv, type: Dataset, description: ''}
-  - {name: model_deployment_flag, type: Artifact, description: ''}
-  - {name: test_json_array_obj, type: JsonObject, description: ''}
+  - {name: model_deployment_flag, type: JsonObject, description: ''}
 implementation:
   container:
     image: gcr.io/OWN_GCP_PROJECT_ID/sample_eval
@@ -19,5 +17,4 @@ implementation:
       --model, {inputPath: model},
       --pred-output-csv, {outputPath: pred_output_csv},
       --model-deployment-flag, {outputPath: model_deployment_flag},
-      --test-json-array-obj, {outputPath: test_json_array_obj}
     ]
